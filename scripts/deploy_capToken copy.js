@@ -2,9 +2,9 @@
 const hre = require("hardhat");
 
 async function main() {
-    const BadgeToken = await hre.ethers.getContractFactory("BadgeToken");
-    console.log(">>>>> Deploying badge...")
-    const token = await BadgeToken.deploy('BadgeToken', 'Badge');
+    const CapToken = await hre.ethers.getContractFactory("CapToken");
+    console.log(">>>>> Deploying Cap...")
+    const token = await CapToken.deploy('CapToken', 'Cap');
     await token.deployed();
     console.log(">>>>> Deployed to:", token.address);
 }

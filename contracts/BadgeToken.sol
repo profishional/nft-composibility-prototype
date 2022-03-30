@@ -1,4 +1,3 @@
-// contracts/BadgeToken.sol
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
@@ -64,7 +63,7 @@ contract BadgeToken is ERC721 {
                 string(
                     abi.encodePacked(
                         '{"name": "Badge #',
-                        Strings.toString(tokenId),
+                        parts[1],
                         '", "description": "A concise Hardhat tutorial Badge NFT with on-chain SVG images like look.", "image": "data:image/svg+xml;base64,',
                         Base64.encode(bytes(output)),
                         '"}'
