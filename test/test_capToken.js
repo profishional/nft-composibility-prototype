@@ -4,7 +4,7 @@ describe("CapToken contract", function () {
     let CapToken;
     let token721;
     let _name = 'CapToken';
-    let _symbol = 'Badge';
+    let _symbol = 'Cap';
     let account1, otheraccounts;
 
     beforeEach(async function () {

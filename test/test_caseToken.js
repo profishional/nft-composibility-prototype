@@ -1,18 +1,17 @@
-// test/BadgeToken-test.js
 const { expect } = require("chai");
 
-describe("BadgeToken contract", function () {
-  let BadgeToken;
+describe("CaseToken contract", function () {
+  let CaseToken;
   let token721;
-  let _name = 'BadgeToken';
-  let _symbol = 'Badge';
+  let _name = 'CaseToken';
+  let _symbol = 'Case';
   let account1, otheraccounts;
 
   beforeEach(async function () {
-    BadgeToken = await ethers.getContractFactory("BadgeToken");
+    CaseToken = await ethers.getContractFactory("CaseToken");
     [owner, account1, ...otheraccounts] = await ethers.getSigners();
 
-    token721 = await BadgeToken.deploy(_name, _symbol);
+    token721 = await CaseToken.deploy(_name, _symbol);
   });
 
   // You can nest describe calls to create subsections.

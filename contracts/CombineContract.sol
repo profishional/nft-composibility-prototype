@@ -13,7 +13,7 @@ contract CombineContract is ERC721 {
 
     mapping(uint256 => address) keyboards;
 
-    function assemble(uint256 _caseId, uint256 _capsId) public {
-        require(msg.sender == caseToOwner[_caseId]);
-    }
+    constructor(string memory _name, string memory _symbol)
+        ERC721(_name, _symbol)
+    {}
 }
