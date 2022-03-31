@@ -2,9 +2,9 @@
 const hre = require("hardhat");
 
 async function main() {
-    const CaseToken = await hre.ethers.getContractFactory("CaseToken");
     console.log(">>>>> Deploying Case...")
-    const token = await CaseToken.deploy('CaseToken', 'Case');
+    const CaseToken = await hre.ethers.getContractFactory("CaseToken");
+    const token = await CaseToken.deploy();
     await token.deployed();
     console.log(">>>>> Deployed to:", token.address);
 }

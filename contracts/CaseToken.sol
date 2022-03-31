@@ -2,26 +2,26 @@
 pragma solidity ^0.8.0;
 
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
+import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/utils/Strings.sol";
 import "base64-sol/base64.sol";
 
 //https://dev.to/yakult/a-concise-hardhat-tutorial-part-2-writing-erc721-nft-5gm6
-contract CaseToken is ERC721 {
-    mapping(uint256 => address) caseToOwner;
+contract CaseToken is ERC721, Ownable {
     uint256 private _currentTokenId = 0; //Token ID here will start from 1
 
-    constructor(string memory _name, string memory _symbol)
-        ERC721(_name, _symbol)
-    {}
+    constructor() public ERC721("CaseToken", "Case") {}
 
     /**
      * @dev Mints a token to an address with a tokenURI.
      * @param _to address of the future owner of the token
      */
-    function mintTo(address _to) public {
+    function mintTo(address _to) public onlyOwner returns (uint256) {
         uint256 newTokenId = _getNextTokenId();
         _mint(_to, newTokenId);
         _incrementTokenId();
+
+        return newTokenId;
     }
 
     /**
@@ -53,7 +53,6 @@ contract CaseToken is ERC721 {
         '14px; }</style><rect width="100%" height="100%" fill="black" /><text x="10" y="20" class="base">';
 
         parts[1] = Strings.toString(tokenId);
-
         parts[2] = "</text></svg>";
 
         string memory output = string(
