@@ -5,7 +5,9 @@ import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 import "@openzeppelin/contracts/utils/Strings.sol";
 import "base64-sol/base64.sol";
 
-contract BadgeToken is ERC721 {
+//https://dev.to/yakult/a-concise-hardhat-tutorial-part-2-writing-erc721-nft-5gm6
+contract CaseToken is ERC721 {
+    mapping(uint256 => address) caseToOwner;
     uint256 private _currentTokenId = 0; //Token ID here will start from 1
 
     constructor(string memory _name, string memory _symbol)
@@ -39,7 +41,7 @@ contract BadgeToken is ERC721 {
 
     function tokenURI(uint256 tokenId)
         public
-        view
+        pure
         override
         returns (string memory)
     {
@@ -62,9 +64,9 @@ contract BadgeToken is ERC721 {
             bytes(
                 string(
                     abi.encodePacked(
-                        '{"name": "Badge #',
+                        '{"name": "Case #',
                         parts[1],
-                        '", "description": "A concise Hardhat tutorial Badge NFT with on-chain SVG images like look.", "image": "data:image/svg+xml;base64,',
+                        '", "description": "NFT 2 with on-chain SVG for composing..", "image": "data:image/svg+xml;base64,',
                         Base64.encode(bytes(output)),
                         '"}'
                     )

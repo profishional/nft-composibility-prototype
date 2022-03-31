@@ -6,6 +6,7 @@ import "@openzeppelin/contracts/utils/Strings.sol";
 import "base64-sol/base64.sol";
 
 contract CapToken is ERC721 {
+    mapping(uint256 => address) capToOwner;
     uint256 private _currentTokenId = 0; //Token ID here will start from 1
 
     constructor(string memory _name, string memory _symbol)
@@ -27,7 +28,7 @@ contract CapToken is ERC721 {
      * @return uint256 for the next token ID
      */
     function _getNextTokenId() private view returns (uint256) {
-        return _currentTokenId + 1;
+        return _currentTokenId + 10;
     }
 
     /**
@@ -39,7 +40,7 @@ contract CapToken is ERC721 {
 
     function tokenURI(uint256 tokenId)
         public
-        view
+        pure
         override
         returns (string memory)
     {
@@ -67,7 +68,7 @@ contract CapToken is ERC721 {
                     abi.encodePacked(
                         '{"name": "Badge #',
                         Strings.toString(tokenId),
-                        '", "description": "A concise Hardhat tutorial Badge NFT with on-chain SVG images like look.", "image": "data:image/svg+xml;base64,',
+                        '", "description": "NFT 1 with on-chain SVG for composing.", "image": "data:image/svg+xml;base64,',
                         Base64.encode(bytes(output)),
                         '"}'
                     )
