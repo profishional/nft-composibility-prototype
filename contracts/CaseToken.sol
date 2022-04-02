@@ -12,10 +12,6 @@ contract CaseToken is ERC721, Ownable {
 
     constructor() public ERC721("CaseToken", "Case") {}
 
-    /**
-     * @dev Mints a token to an address with a tokenURI.
-     * @param _to address of the future owner of the token
-     */
     function mintTo(address _to) public onlyOwner returns (uint256) {
         uint256 newTokenId = _getNextTokenId();
         _mint(_to, newTokenId);
@@ -24,17 +20,10 @@ contract CaseToken is ERC721, Ownable {
         return newTokenId;
     }
 
-    /**
-     * @dev calculates the next token ID based on value of _currentTokenId
-     * @return uint256 for the next token ID
-     */
     function _getNextTokenId() private view returns (uint256) {
         return _currentTokenId + 1;
     }
 
-    /**
-     * @dev increments the value of _currentTokenId
-     */
     function _incrementTokenId() private {
         _currentTokenId++;
     }
